@@ -3,7 +3,10 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+<<<<<<< HEAD
   flutter_inappwebview_windows
+=======
+>>>>>>> 12b64df7e2e3ffb7d2914273ae1182f29b76276b
   url_launcher_windows
 )
 
