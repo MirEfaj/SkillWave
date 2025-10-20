@@ -1,18 +1,18 @@
-# 📱 Learner Based Application ("flutterSdkVersion": "3.35.3")
+#  Learner Based Application ("flutterSdkVersion": "3.35.3")
 
-A **Flutter-based learning platform** that allows users to access educational courses through **video tutorials** and **webpage tutorials**, helping learners upskill efficiently.
-
----
-
-## 🚀 Vision & Objectives
-- Provide an **easy-to-use** learning platform for students and self-learners.
-- Offer **two flexible learning modes**: video and web tutorials.
-- Deliver a **smooth navigation flow** with modern Flutter UI.
-- Build a **scalable foundation** for future features like progress tracking and admin panel.
+A Flutter-based learning platform that allows users to access educational courses through 'video tutorials' and 'webpage tutorials', helping learners upskill efficiently.
 
 ---
 
-## 🧭 Navigation Flow
+##  Vision & Objectives
+- Provide an easy-to-use learning platform for students and self-learners.
+- Offer two flexible learning modes': video and web tutorials.
+- Deliver a smooth navigation flow with modern Flutter UI.
+- Build a scalable foundation for future features like progress tracking and admin panel.
+
+---
+
+##  Navigation Flow
 
 Splash Screen
 ↓
@@ -30,10 +30,10 @@ Navigation Drawer → Profile / Dashboard
 ---
 
 ## 🧰 Tech Stack
-- **Framework:** Flutter
-- **State Management:** GetX
-- **Backend (Planned):** Firebase Authentication & Firestore
-- **Version Control:** Git & GitHub
+- Framework: Flutter
+- State Management: GetX
+- Backend (Planned): Firebase Authentication & Firestore
+- Version Control: Git & GitHub
 
 ---
 
@@ -52,14 +52,14 @@ assets/
 
 ---
 
-## 👥 Target Users
+##  Target Users
 - Students
 - Self-learners
 - Job seekers looking to upskill
 
 ---
 
-## 📝 Features (MVP)
+##  Features (MVP)
 - Splash Screen
 - Registration/Login
 - Course Grid View (Home Page)
@@ -70,14 +70,18 @@ assets/
 ---
 
 ## 📸 Figma (Link)
-👉 
 
+https://www.figma.com/design/yn3w8yOK1IoNHx6ILuJ2MQ/SkillWave?node-id=0-1&t=ZApwoXFUV4aHz9e1-1
+
+## 📸 YouTube (Link)
+
+https://youtu.be/5VZYZf_muGo?si=b4XjpdRnaAm-FMqP
 ---
 
-## 🌿 Version Control Evidence
-- ✅ Initial commit — “Initial Flutter project setup with folder structure”
-- ✅ Push to GitHub main branch
-- ✅ Repository Public
+##  Version Control Evidence
+-  Initial commit — “Initial Flutter project setup with folder structure”
+-  Push to GitHub main branch
+-  Repository Public
 
 ---
 
