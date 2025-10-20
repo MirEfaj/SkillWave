@@ -86,7 +86,7 @@ https://www.figma.com/design/yn3w8yOK1IoNHx6ILuJ2MQ/SkillWave?node-id=0-1&t=ZApw
 -->
 
 ## 📺 YouTube (Link)
-[▶️ Watch Demo](https://youtu.be/5VZYZf_muGo?si=b4XjpdRnaAm-FMqP)
+Watch:  https://youtu.be/5VZYZf_muGo?si=b4XjpdRnaAm-FMqP
 ---
 
 ##  Version Control Evidence
