@@ -69,13 +69,24 @@ assets/
 
 ---
 
-## 📸 Figma (Link)
+## 🎨 Figma (Link)
 
 https://www.figma.com/design/yn3w8yOK1IoNHx6ILuJ2MQ/SkillWave?node-id=0-1&t=ZApwoXFUV4aHz9e1-1
 
-## 📸 YouTube (Link)
+## 📸 UI Image
+<p align="center">
+  <img src="assets/images/ui_preview.png" alt="App UI Preview" style="width:400px;"/>
+</p>
 
-https://youtu.be/5VZYZf_muGo?si=b4XjpdRnaAm-FMqP
+<!-- Alternative Pure Markdown Centering -->
+<!--
+<center>
+![App UI Preview](assets/images/ui_preview.png)
+</center>
+-->
+
+## 📺 YouTube (Link)
+[▶️ Watch Demo](https://youtu.be/5VZYZf_muGo?si=b4XjpdRnaAm-FMqP)
 ---
 
 ##  Version Control Evidence
@@ -89,3 +100,4 @@ https://youtu.be/5VZYZf_muGo?si=b4XjpdRnaAm-FMqP
  Md Efaj Alam 
 📧 mdefaj25@gmail.com  
 🌐 https://github.com/MirEfaj
+🔗 LinkedIn : www.linkedin.com/in/efaj1
