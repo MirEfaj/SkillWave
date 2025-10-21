@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage> {
                     searchQuery = value;
                   });
                 },
-                 style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   icon: const Icon(Icons.search, color: Colors.white70),
                   hintText: 'Search courses...',
@@ -70,9 +70,15 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(height: 20),
-            const Text("Explore Courses", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),),
+            const Text(
+              "Explore Courses",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+            ),
             const SizedBox(height: 8),
-            const Text("Choose a course and start learning today", style: TextStyle(fontSize: 16, color: Colors.white70),),
+            const Text(
+              "Choose a course and start learning today",
+              style: TextStyle(fontSize: 16, color: Colors.white70),
+            ),
             const SizedBox(height: 20),
 
             // Course List
@@ -80,7 +86,11 @@ class _HomePageState extends State<HomePage> {
               const Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 50),
-                  child: Text('No courses found', style: TextStyle(color: Colors.white70, fontSize: 16),),),
+                  child: Text(
+                    'No courses found',
+                    style: TextStyle(color: Colors.white70, fontSize: 16),
+                  ),
+                ),
               )
             else
               ...filteredCourses.map((course) => buildCourseCard(context, course)),
@@ -192,8 +202,12 @@ class _HomePageState extends State<HomePage> {
                       ),
                       onPressed: () {
                         Navigator.pop(context);
-                         Navigator.push(context, MaterialPageRoute(builder: (_) => VideoPage(title: course.title, videoUrls: course.videos, courseId: course.id, lectureTitle: course.lectureTitle,),),);
-                     //   Navigator.push(context, MaterialPageRoute(builder: (_) => VideoPage(title: course.title, videoUrls: course.videos, courseId: course.id,  ),),);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => VideoPage(title: course.title, videoUrls: course.videos),
+                          ),
+                        );
                       },
                       icon: const Icon(Icons.play_circle_fill, size: 30, color: Colors.white),
                       label: const Text("Video", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600)),
@@ -212,7 +226,7 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => WebPage(title: course.title, webpageUrls: course.webpages, courseId: course.id, lectureTitle: course.lectureTitle,),
+                            builder: (_) => WebPage(title: course.title, webpageUrls: course.webpages),
                           ),
                         );
                       },
