@@ -98,9 +98,18 @@ class Dashboard extends StatelessWidget {
           const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("SkillWave Learning Hub", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
+              Text(
+                "SkillWave Learning Hub",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold),
+              ),
               SizedBox(height: 4),
-              Text("Welcome back, keep learning!", style: TextStyle(color: Colors.white70, fontSize: 12),),
+              Text(
+                "Welcome back, keep learning!",
+                style: TextStyle(color: Colors.white70, fontSize: 12),
+              ),
             ],
           ),
           Container(
