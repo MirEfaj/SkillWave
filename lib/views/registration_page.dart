@@ -13,13 +13,12 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-
+  bool isLogin = true;
   final TextEditingController _emailTEcontroller = TextEditingController();
   final TextEditingController _firstNameTEcontroller = TextEditingController();
   final TextEditingController _lastNameTEcontroller = TextEditingController();
   final TextEditingController _phoneTEcontroller = TextEditingController();
   final TextEditingController _passwordTEcontroller = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -52,137 +51,77 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: Colors.white24),
                 ),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
+                child: Column(
+                  children: [
 
-                      Text("Registration",
-                        textAlign: TextAlign.center,
-                        style:const TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 20),),
+                    Text("Registration",
+                      textAlign: TextAlign.center,
+                      style:const TextStyle(color: Colors.white, fontWeight: FontWeight.bold,fontSize: 20),),
 
-                      const SizedBox(height: 20),
-                      TextFormField(
-                        controller: _firstNameTEcontroller,
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(hintText: "First Name",),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your name';
-                          }
-                          if (value.length < 3) {
-                            return 'Name must be at least 3 characters long';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        controller: _lastNameTEcontroller,
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(hintText: "Last Name",),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your name';
-                          }
-                          if (value.length < 3) {
-                            return 'Name must be at least 2 characters long';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        controller: _phoneTEcontroller,
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(hintText: "Phone Number",),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your name';
-                          }
-                          if (value.length < 3) {
-                            return 'Name must be at least 3 characters long';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16),
+                    const SizedBox(height: 20),
 
-                      // Email Field
-                      TextFormField(
-                        controller: _emailTEcontroller,
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(hintText: "your@email.com",),
-                        validator: (value){
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter an email address';
-                          }
-                          final emailRegex = RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',);
-                          if (!emailRegex.hasMatch(value)) {
-                            return 'Please enter a valid email address';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 16),
+                    TextField(
+                      controller: _firstNameTEcontroller,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(hintText: "First Name",),
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: _lastNameTEcontroller,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(hintText: "Last Name",),
+                    ),
+                    const SizedBox(height: 16),
+                    TextField(
+                      controller: _phoneTEcontroller,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(hintText: "Phone Number",),
+                    ),
+                    const SizedBox(height: 16),
 
-                      // Password Field
-                      TextFormField(
-                        controller: _passwordTEcontroller,
-                        obscureText: true,
-                        style: const TextStyle(color: Colors.white),
-                        decoration: InputDecoration(hintText: "Password",),
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter a password';
-                          }
-                          if (value.length < 6) {
-                            return 'Password must be at least 6 characters long';
-                          }
-                          if (!value.contains(RegExp(r'[A-Z]'))) {
-                            return 'Password must contain at least one uppercase letter';
-                          }
-                          if (!value.contains(RegExp(r'[a-z]'))) {
-                            return 'Password must contain at least one lowercase letter';
-                          }
-                          if (!value.contains(RegExp(r'[0-9]'))) {
-                            return 'Password must contain at least one digit';
-                          }
-                          if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-                            return 'Password must contain at least one special character';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 20),
+                    // Email Field
+                    TextField(
+                      controller: _emailTEcontroller,
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(hintText: "your@email.com",),
+                    ),
+                    const SizedBox(height: 16),
 
-                      // Login Button
-                      SizedBox(
-                        height: 50,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: _signUp,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: const Color(0xFF7F00FF),
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
+                    // Password Field
+                    TextField(
+                      controller: _passwordTEcontroller,
+                      obscureText: true,
+                      style: const TextStyle(color: Colors.white),
+                      decoration: InputDecoration(hintText: "Password",),
+                    ),
+                    const SizedBox(height: 20),
+
+                    // Login Button
+                    SizedBox(
+                      height: 50,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: _signUp,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                          foregroundColor: const Color(0xFF7F00FF),
+                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Text("Sign-Up" , style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
                         ),
+                        child: Text("Sign-Up" , style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
 
@@ -200,8 +139,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         recognizer: TapGestureRecognizer()..onTap = _signIn
                     )
                   ]
-              )),
-              const SizedBox(height: 20),
+              ))
             ],
           ),
         ),
@@ -210,7 +148,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   void _signIn(){Navigator.pop(context);}
-  void _signUp(){if (_formKey.currentState!.validate()){Navigator.pushNamedAndRemoveUntil(context, HomePage.name, (predicate)=> false);}}
+  void _signUp(){Navigator.pushNamedAndRemoveUntil(context, HomePage.name, (predicate)=> false);}
 
   @override
   void dispose() {
