@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../widgets/gradient_background.dart';
@@ -20,6 +22,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final TextEditingController _phoneTEcontroller = TextEditingController();
   final TextEditingController _passwordTEcontroller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -165,20 +168,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       const SizedBox(height: 20),
 
                       // Login Button
-                      SizedBox(
-                        height: 50,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: _signUp,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: const Color(0xFF7F00FF),
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                      Visibility(
+                        visible: _isLoading == false,
+                        replacement: CenteredCirculatProgressIncator(),
+                        child: SizedBox(
+                          height: 50,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: _signUp,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: const Color(0xFF7F00FF),
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                             ),
+                            child: Text("Sign-Up" , style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
                           ),
-                          child: Text("Sign-Up" , style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
                         ),
                       ),
                     ],
@@ -210,7 +217,62 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   void _signIn(){Navigator.pop(context);}
-  void _signUp(){if (_formKey.currentState!.validate()){Navigator.pushNamedAndRemoveUntil(context, HomePage.name, (predicate)=> false);}}
+
+  CenteredCirculatProgressIncator(){return Center(child: CircularProgressIndicator());}
+
+  Future<void> _signUp() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {_isLoading = true;});
+
+      try {
+        final fullName = "${_firstNameTEcontroller.text.trim()} ${_lastNameTEcontroller.text.trim()}";
+
+        final credential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+          email: _emailTEcontroller.text.trim(),
+          password: _passwordTEcontroller.text.trim(),
+        );
+
+        final user = credential.user;
+        await user!.updateDisplayName(fullName);
+        await user.reload();
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+          'uid': user.uid,
+          'fullName': fullName,
+          'firstName': _firstNameTEcontroller.text.trim(),
+          'lastName': _lastNameTEcontroller.text.trim(),
+          'email': _emailTEcontroller.text.trim(),
+          'phone': _phoneTEcontroller.text.trim(),
+          'createdAt': FieldValue.serverTimestamp(),
+          'updatedAt': FieldValue.serverTimestamp(),
+        }, SetOptions(merge: true));
+
+        if (mounted) {
+          Navigator.pushNamedAndRemoveUntil(context, HomePage.name, (predicate)=> false);
+        }
+      } on FirebaseAuthException catch (e) {
+        String message = "Registration failed";
+
+        if (e.code == 'email-already-in-use') {
+          message = "This email is already registered.";
+        } else if (e.code == 'weak-password') {
+          message = "Password is too weak.";
+        } else if (e.code == 'invalid-email') {
+          message = "Invalid email format.";
+        }
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Error: ${e.toString()}")),
+        );
+      } finally {
+        if (mounted) {setState(() {_isLoading = false;});}
+      }
+    }
+  }
+
+
 
   @override
   void dispose() {

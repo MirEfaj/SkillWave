@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:skill_wave/views/registration_page.dart';
@@ -20,6 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -102,20 +104,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(height: 20),
 
                       // Login Button
-                      SizedBox(
-                        height: 50,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: _signIn,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            foregroundColor: const Color(0xFF7F00FF),
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                      Visibility(
+                        visible: _isLoading == false,
+                        replacement: CenteredCirculatProgressIncator() ,
+                        child: SizedBox(
+                          height: 50,
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed:  _signIn,
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              foregroundColor: const Color(0xFF7F00FF),
+                              padding: const EdgeInsets.symmetric(vertical: 14),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                             ),
+                            child: Text("Sign In" , style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
                           ),
-                          child: Text("Sign In" , style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,),),
                         ),
                       ),
                     ],
@@ -134,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   TextSpan(
                     text: "Sign-Up",
                     style: TextStyle(fontWeight: FontWeight.w600,color: Colors.green ),
-                    recognizer: TapGestureRecognizer()..onTap = _signUp
+                    recognizer: TapGestureRecognizer()..onTap =  _signUp
                   )
                 ]
               )),
@@ -147,7 +153,44 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _signIn() {if (_formKey.currentState!.validate()) {Navigator.pushNamedAndRemoveUntil(context, HomePage.name, (predicate)=> false);}}
+   CenteredCirculatProgressIncator(){
+    return Center(child: CircularProgressIndicator());
+  }
+
+ Future<void>  _signIn() async{
+    if (!_formKey.currentState!.validate()) return;
+    setState(() {_isLoading = true;});
+
+    try{
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text
+      );
+      Navigator.pushNamedAndRemoveUntil(context, HomePage.name, (predicate)=> false);
+    } on FirebaseAuthException catch (e){
+      String message;
+      switch(e.code){
+        case "user-not-found" :
+          message = "No user found for that email";
+          break;
+        case "wrong-password" :
+          message = "incorrect password";
+          break;
+        case "invalid-email" :
+          message = "invalid email formate";
+          break;
+        default :
+          message = "login failed. Please try again";
+      }
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+    } catch(_){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Something went wrong, Try again Letter")));
+    } finally{
+      setState(() {_isLoading = false;});
+    }
+  }
+
+
   void _signUp() { {Navigator.pushNamed(context, RegistrationScreen.name);}}
   void _forgetPass(){Navigator.pushNamed(context, ForgetPasswordScreen.name);}
 

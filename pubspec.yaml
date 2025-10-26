@@ -36,14 +36,16 @@ dependencies:
   cupertino_icons: ^1.0.8
   pin_code_fields: ^8.0.1
   intl: ^0.20.2
-<<<<<<< HEAD
+
   youtube_player_flutter: ^9.1.3
-  url_launcher: ^6.1.10
   shared_preferences: ^2.5.3
-=======
+
   video_player: ^2.10.0
   url_launcher: ^6.3.2
->>>>>>> 12b64df7e2e3ffb7d2914273ae1182f29b76276b
+  firebase_core: ^4.2.0
+  firebase_auth: ^6.1.1
+  cloud_firestore: ^6.0.3
+
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../views/about_screen.dart';
 import '../views/certificates.dart';
@@ -8,11 +9,16 @@ import '../views/my_courses.dart';
 import '../views/notifications_screen.dart';
 import '../views/profile_settings_page.dart';
 
-class AppDrawer extends StatelessWidget {
+class AppDrawer extends StatefulWidget {
   const AppDrawer({
     super.key,
   });
 
+  @override
+  State<AppDrawer> createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -113,7 +119,7 @@ class AppDrawer extends StatelessWidget {
             iconColor: Colors.red,
             iconBgColor: Colors.red.shade100,
             text: 'Logout',
-            onTap: () {Navigator.pushNamedAndRemoveUntil(context, LoginScreen.name, (predicate)=> false);},
+            onTap: _logOut
           ),
 
           Padding(
@@ -125,7 +131,15 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-
+  Future<void> _logOut() async{
+    try{
+      await FirebaseAuth.instance.signOut();
+      Navigator.pushNamedAndRemoveUntil(context, LoginScreen.name, (predicate)=> false);
+    }catch(e){
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Error Signing Out")));
+    }
+  }
+}
 
   /// Reusable method to create a ListTile with a colored icon and shadow
   Widget _buildListTile({
@@ -151,4 +165,4 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-}
+
