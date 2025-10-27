@@ -75,25 +75,13 @@ https://www.figma.com/design/yn3w8yOK1IoNHx6ILuJ2MQ/SkillWave?node-id=0-1&t=ZApw
 
 ## 📸 UI Image
 <p align="center">
-  <img src="assets/images/ui_preview.png" alt="App UI Preview" style="width:400px;"/>
+  <img src="assets/images/ui_preview.png" alt="App UI Preview" width="400"/>
 </p>
-
-<!-- Alternative Pure Markdown Centering -->
-<!--
-<center>
-![App UI Preview](assets/images/ui_preview.png)
-</center>
 
 <p align="center">
-  <img src="assets/images/img.png" alt="Firebase Auth" style="width:400px;"/>
+  <img src="assets/images/img.png" alt="Firebase Auth" width="400"/>
 </p>
 
-<!-- Alternative Pure Markdown Centering -->
-<!--
-<center>
-![App UI Preview](assets/images/img.png)
-</center>
--->
 
 ## 📺 YouTube (Link)
 Watch:  https://youtu.be/k1rT8PO-DlI?si=Vw8D2_DyBR08mN56
