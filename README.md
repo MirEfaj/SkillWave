@@ -68,6 +68,32 @@ assets/
 - Drawer Navigation (Profile, Dashboard)
 
 ---
+## Setup instructions (how someone can run this app)
+Follow these steps to set up and run the project locally
+1️⃣ Prerequisites: Make sure you have the following installed:
+- Flutter SDK (`flutterSdkVersion: 3.35.3`) — managed with [FVM](https://fvm.app/)
+- Dart SDK (comes with Flutter)
+- Android Studio or VS Code
+- Git
+2️⃣ Clone the Repository (bash)
+-  git clone https://github.com/MirEfaj/SkillWave.git
+- cd SkillWave
+3️⃣ Set Up Flutter Version (via FVM)
+- fvm install 3.35.3
+- fvm use 3.35.3
+4️⃣ Install Dependencies (bash)
+- fvm flutter pub get
+- If you’re not using FVM: flutter pub get
+5️⃣ Configure Firebase
+- Go to Firebase Console
+- Create a new Firebase project.
+- Add an Android App using your package name (e.g., com.example.appname).
+- Download the generated google-services.json file.
+- Place it inside:android/app/google-services.json
+- Enable Firebase services you’re using: Authentication and Cloud Firestore
+6️⃣ Run the App
+- Using FVM: fvm flutter clean     fvm flutter run
+- Or normally: flutter clean,  flutter run
 
 ## 🎨 Figma (Link)
 
