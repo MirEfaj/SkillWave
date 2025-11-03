@@ -69,6 +69,7 @@ assets/
 
 ---
 ## Setup instructions (how someone can run this app)
+
 Follow these steps to set up and run the project locally
 1️⃣ Prerequisites: Make sure you have the following installed:
 - Flutter SDK (`flutterSdkVersion: 3.35.3`) — managed with [FVM](https://fvm.app/)
